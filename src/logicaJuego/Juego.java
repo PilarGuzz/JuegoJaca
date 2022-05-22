@@ -25,6 +25,8 @@ public class Juego {
 			}
 		}
 		this.jugadorJuega=0;
+		
+		this.crearTablero();
 	}
 	
 	/**
@@ -221,16 +223,15 @@ public class Juego {
 	 * @return
 	 */
 	public String imprimeValoresJugadores() {
-		int contador = 1;
 		StringBuilder sb = new StringBuilder();
 		
 		for (Coordenada coordenada : this.coordenadaJugadores) {
 			Jugador jugador = (Jugador) tablero.get(coordenada);
-			sb.append("Jugador numero: " + contador 
+			sb.append("Jugador " + jugador.getNombre() +"."
 						+ " Dinero: " + jugador.getDinero() 
 						+ " Gemas: " + jugador.getGemas() 
 						+ " Pociones: " + jugador.getPociones() + "\n");
-			contador++;
+		
 		}
 		return sb.toString();
 	}
