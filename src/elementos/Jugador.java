@@ -30,7 +30,7 @@ public class Jugador extends Element {
 	}
 	
 	public int getFuerzaParaLuchar() {
-		return random.nextInt(getFuerza());
+		return random.nextInt(getFuerza()+1);
 	}
 
 
@@ -39,7 +39,7 @@ public class Jugador extends Element {
 	}
 
 	public int getMagiaParaLuchar() {
-		return random.nextInt(getMagia());
+		return random.nextInt(getMagia()+1);
 	}
 
 	private int getVelocidad() {
@@ -47,7 +47,7 @@ public class Jugador extends Element {
 	}
 
 	public int getVelocidadParaLuchar() {
-		return random.nextInt(getVelocidad());
+		return random.nextInt(getVelocidad())+1;
 	}
 
 	public int getDinero() {

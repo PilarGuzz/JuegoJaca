@@ -173,11 +173,11 @@ public class Juego {
 			
 		}else {
 			for(Element e : this.tablero.values() ) {
-				if (e instanceof Jugador) {
-					if (((Jugador) e).getDinero() == Constantes.DINERO) {
+				if (e instanceof Jugador ju && ju.getDinero() == Constantes.DINERO) {
+					
 						terminar = true;
 
-					}
+					
 				}
 			}	
 		}
@@ -315,7 +315,7 @@ public class Juego {
 		Element elemento = this.tablero.get(coordDestino);
 
 		if (elemento != null) { // Hay algo en la casilla
-			if (elemento instanceof Jugador) {
+			if (elemento instanceof Jugador ) {
 
 				Jugador enemigo = (Jugador) elemento;
 				int resultadoLucha = jugador.lucha(enemigo);
@@ -343,12 +343,16 @@ public class Juego {
 					break;
 				case Constantes.PIERDE_MUERE:
 					resul = "El enemigo " + enemigo.getNombre() + " gana. El jugador muere";
-					this.eliminarJugador(this.coordenadaJugadores.get(jugadorJuega));
+					this.eliminarJugador(this.coordenadaJugadores.get(this.jugadorJuega));
 					dado = 0;
 					// Decrementamos en uno el jugador, para que no se salte al siguiente
 					// ya que al borrarlo el siguiente apunta al siguiente, y al incrementarlo
-					// se le salta
+					// se lo salta
 					this.jugadorJuega--;
+					break;
+					
+				default :
+					resul = "Algo ha salido mal";
 					break;
 				}
 				// DespuÃ©s de la lucha los jugadores no se mueven
@@ -367,6 +371,10 @@ public class Juego {
 
 				case Constantes.PIERDE_A_LA_ROCA:
 					resul = "El jugador " + jugador.getNombre() + " pierde. No se mueve";
+					break;
+					
+				default :
+					resul = "Algo ha salido mal";
 					break;
 				}
 			} else if (elemento.getType() == ElementType.GEMA) {
@@ -395,7 +403,7 @@ public class Juego {
 	 * Actualiza la variable jugadorJuega al próximo jugador. Si es el último de la lista se debe empezar por el principio.
 	 */
 	public void proximoJugador() {
-		if (this.jugadorJuega == Constantes.NUM_JUGADORES - 1) {
+		if (this.jugadorJuega == coordenadaJugadores.size() - 1) {
 			this.jugadorJuega = 0;
 		} else {
 			this.jugadorJuega++;
@@ -490,7 +498,9 @@ public class Juego {
 	 * @return
 	 */
 	public Coordenada obtenerCoordenadaJugadorJuega() {
-		return this.coordenadaJugadores.get(jugadorJuega);
+		return this.coordenadaJugadores.get(this.jugadorJuega);
+		
+		
 	}
 	
 }
