@@ -421,7 +421,7 @@ public class Juego {
 		
 	
 		if (this.coordenadaJugadores.size() == 1) {
-			Jugador ju = (Jugador) tablero.get(coordenadaJugadores.get(jugadorJuega));
+			Jugador ju = (Jugador) tablero.get(coordenadaJugadores.get(0));
 			resultado.append(ju.toString());
 			
 		}else {
